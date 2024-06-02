@@ -1,0 +1,32 @@
+.search-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.search-wrapper {
+    position: relative;
+    width: 500px;
+}
+
+.search {
+    margin: 20px;
+    width: calc(100% - 30px);
+    padding: 15px;
+    border-radius: 50px;
+    border: 1px solid rgba(176, 0, 225);
+    outline: none;
+    position: relative;
+}
+
+.search:focus {
+    border-color: rgb(142, 0, 181);
+}
+
+.cancel-icon {
+    position: absolute;
+    top: 50%;
+    right: 5px;
+    transform: translateY(-50%);
+    cursor: pointer;
+}

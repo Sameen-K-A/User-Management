@@ -1,0 +1,74 @@
+.container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+}
+
+.login-center h1 {
+    text-align: center;
+}
+
+.login-center {
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.148);
+    padding: 30px;
+    background-color: #fff;
+    border-radius: 10px;
+    transition: transform 0.2s ease-in-out;
+}
+
+.login-center:hover {
+    box-shadow: 0 4px 8px rgba(176, 0, 225, 0.279);
+    transform: scale(1.01);
+}
+
+.form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.input {
+    margin: 10px 0;
+    padding: 10px;
+    width: 300px;
+    border: none;
+    border-bottom: 2px solid rgb(176, 0, 225);
+    outline: none;
+}
+
+.button {
+    margin-top: 20px;
+    padding: 10px 20px;
+    background: linear-gradient(70deg, rgba(89, 0, 113, 1) 0%, rgb(176, 0, 225) 53%, rgb(89, 0, 113) 100%);
+    width: 150px;
+    border-radius: 50px;
+    color: #fff;
+    cursor: pointer;
+    border: none;
+    font-size: 14px;
+}
+
+.button:hover {
+    background: linear-gradient(70deg, rgb(176, 0, 225) 53%, rgb(89, 0, 113) 100%, rgb(89, 0, 113) 100%);
+}
+
+.link {
+    margin-top: 20px;
+    color: #000000;
+    text-decoration: none;
+    font-size: 13px;
+}
+
+.link u {
+    cursor: pointer;
+}
+
+@media (max-width: 400px) {
+    .login-center {
+        box-shadow: none;
+        padding: 20px;
+        width: 90%;
+    }
+}

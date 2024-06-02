@@ -1,0 +1,72 @@
+.main h1 {
+    text-align: center;
+}
+
+.main {
+    padding: 50px 200px;
+}
+
+.styled-table {
+    width: 100%;
+    table-layout: fixed;
+    border-collapse: collapse;
+}
+
+.styled-table thead th {
+    height: 50px;
+    border-radius: 50px;
+    color: white;
+    text-align: center;
+    padding: 0 15px;
+    white-space: nowrap;
+}
+
+.styled-table thead th.edit,
+.styled-table thead th.delete,
+.styled-table tbody td.edit,
+.styled-table tbody td.delete {
+    width: 80px;
+}
+
+.styled-table thead {
+    background: linear-gradient(70deg, rgba(89, 0, 113, 1) 0%, rgb(176, 0, 225) 53%, rgb(89, 0, 113) 100%);
+}
+
+.styled-table thead th.edit,
+.styled-table thead th.delete {
+    width: 80px;
+}
+
+.styled-table tbody .childDivWrapper {
+    height: 30px;
+    border-bottom: 1px solid rgba(89, 0, 113, 1);
+    text-align: center;
+    padding: 0 15px;
+    font-size: 12px;
+    white-space: nowrap;
+}
+
+@media (max-width: 376px) {
+    .main {
+        padding: 0;
+    }
+
+    .styled-table tbody .childDivWrapper {
+        font-size: 12px;
+    }
+}
+
+@media (max-width: 800px) {
+    .main {
+        padding: 20px 50px;
+    }
+
+    .styled-table thead th {
+        height: 45px;
+        border-radius: 25px;
+    }
+
+    .styled-table tbody .childDivWrapper {
+        font-size: 13px;
+    }
+}
