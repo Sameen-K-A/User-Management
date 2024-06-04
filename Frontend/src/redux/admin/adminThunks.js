@@ -34,8 +34,8 @@ export const editUser = createAsyncThunk(
    'adminData/editUser',
    async ({ id, newName }) => {
       const response = await axios.post(`${localhostURL}/admin/editUser`, { id, newName });
-      if(response.data.modifiedCount === 1){
-         return {id, newName};
+      if (response.data.modifiedCount === 1) {
+         return { id, newName };
       }
    }
 );

@@ -1,25 +1,36 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux"
 import { ToastContainer, toast } from "react-toastify";
-import { localhostURL } from "../../services/url"
-import axios from "axios";
+import { loginPost } from "../../redux/user/userThunk"
+import { useNavigate } from "react-router-dom";
 import 'react-toastify/dist/ReactToastify.css';
 import "../../assets/style/login.css";
 
 const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  let userData = useSelector((state) => state.myData)
+  const dispatch = useDispatch();
+  const navigate = useNavigate()
 
   const handleLogin = async (event) => {
     event.preventDefault();
     if (email.trim() === "" || password.trim() === "") {
-      toast.warning("Fill all the fields!", { hideProgressBar: true, autoClose: false });
+      toast.warning("Fill all the fields!", { hideProgressBar: true, autoClose: 3000, position: "bottom-right" });
     } else {
-      try {
-        const response = await axios.post(localhostURL, { email, password })
-        console.log(response);
-      } catch (error) {
-        console.log(error);
+      userData = await dispatch(loginPost({ email, password }));
+      if (userData.payload == "user not found") {
+        toast.error("User not found", { hideProgressBar: true, autoClose: 3000, position: "bottom-right" });
+        return
+      } else if (userData.payload == "user is blocked") {
+        toast.error("Your account is blocked", { hideProgressBar: true, autoClose: 3000, position: "bottom-right" });
+        return
+      } else if (userData.payload == "wrong password") {
+        toast.error("Password is wrong", { hideProgressBar: true, autoClose: 3000, position: "bottom-right" });
+        return
+      } else {
+        navigate("/home")
       }
     }
   }

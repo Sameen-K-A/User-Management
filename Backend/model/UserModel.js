@@ -20,6 +20,10 @@ const userSchema = new mongoose.Schema(
     isBlocked: {
       type: Boolean,
       default: false
+    },
+    profileURL: {
+      type: String,
+      default: undefined
     }
   },
   {

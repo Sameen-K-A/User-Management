@@ -1,10 +1,10 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import Navbar from "../common/Navbar";
 import Search from "../admin/Search";
 import { Blockbtn, Unblockbtn, Editbtn } from "../svg/svgIcons";
 import confirmAlert from "../../assets/sweetAlert/confirmAlert";
-import { blockUser, unblockUser, editUser } from "../../redux/admin/adminThunks";
+import { fetchUsers, blockUser, unblockUser, editUser } from "../../redux/admin/adminThunks";
 import { ToastContainer, toast } from "react-toastify";
 import "../../assets/style/adminhome.css";
 
@@ -14,12 +14,17 @@ const Adminhome = () => {
   const [editedNewName, setEditedNewName] = useState("")
   const dispatch = useDispatch();
 
+  useEffect(() => {
+    dispatch(fetchUsers())
+  }, [])
+
   const handleBlockUser = async (id) => {
     const result = await confirmAlert("Do you want to block this user?");
     if (result.isConfirmed) {
       dispatch(blockUser(id));
     }
   }
+
   const handleUnBlockUser = async (id) => {
     const result = await confirmAlert("Do you want to un-block this user?");
     if (result.isConfirmed) {

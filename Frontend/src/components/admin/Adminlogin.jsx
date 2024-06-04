@@ -1,15 +1,12 @@
 import React, { useState } from "react";
 import { ToastContainer, toast } from "react-toastify";
-import { useNavigate } from "react-router-dom";
-import { useDispatch } from "react-redux";
-import { fetchUsers } from "../../redux/admin/adminThunks";
+import { useNavigate } from "react-router-dom"
 import "../../assets/style/login.css";
 
 const Adminlogin = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const navigate = useNavigate();
-  const dispatch = useDispatch();
   const adminEmail = "admin123@gmail.com";
   const adminPassword = "000";
   const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
@@ -25,7 +22,6 @@ const Adminlogin = () => {
     } else if (adminPassword !== password) {
       toast.warning("Wrong password! please check", { hideProgressBar: true, autoClose: 3000 });
     } else {
-      dispatch(fetchUsers());
       navigate("/admin/home");
     }
   };

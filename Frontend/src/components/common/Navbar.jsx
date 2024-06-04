@@ -6,8 +6,8 @@ import { useNavigate } from "react-router-dom";
 import "../../assets/style/navbar.css";
 
 const Navbar = () => {
-  const dispatch = useDispatch();
   const navigate = useNavigate();
+  const dispatch = useDispatch();
 
   const logout = () => {
     dispatch(adminLogout());

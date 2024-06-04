@@ -7,7 +7,7 @@ const confirmAlert = (content) => {
     showCancelButton: true,
     confirmButtonText: 'Confirm',
     cancelButtonText: 'Cancel',
-    position: "bottom-right",
+    position: "bottom",
     customClass: {
       popup: 'custom-width',
       confirmButton: 'confirm-btn',

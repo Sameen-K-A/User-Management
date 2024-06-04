@@ -6,6 +6,7 @@ const intialData = localStorage.getItem("usersArray") ? JSON.parse(localStorage.
 const adminSlice = createSlice({
   name: "adminData",
   initialState: {
+    isLogin: false,
     usersArray: intialData,
     filteredUsers: intialData
   },
@@ -13,7 +14,7 @@ const adminSlice = createSlice({
     adminLogout: (state) => {
       localStorage.removeItem("usersArray");
       state.usersArray = [];
-      state.filteredUsers = []
+      state.filteredUsers = [];
     },
     searchUser: (state, action) => {
       const searchValue = action.payload.toLowerCase();

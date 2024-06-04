@@ -1,10 +1,10 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
-import { localhostURL } from "../../services/url";
-import axios from "axios";
+import { Link, useNavigate } from "react-router-dom";
 import { ToastContainer, toast } from "react-toastify";
 import 'react-toastify/dist/ReactToastify.css';
 import "../../assets/style/login.css";
+import axios from "axios";
+import { localhostURL } from "../../services/url";
 
 const Register = () => {
   const [name, setName] = useState("");
@@ -12,6 +12,7 @@ const Register = () => {
   const [phone, setPhone] = useState("");
   const [password, setPassword] = useState("");
   const [confpassword, setConfpassword] = useState("");
+  const navigate = useNavigate();
 
   const handleRegister = async (event) => {
     event.preventDefault();
@@ -32,15 +33,14 @@ const Register = () => {
     } else if (password.trim() !== confpassword.trim()) {
       toast.warning("Password and confirm password do not match!", { hideProgressBar: true, autoClose: 3000 });
     } else {
-      try {
-        const response = await axios.post(`${localhostURL}/registerPost`, { name, email, phone, password, confpassword });
-        if (response.data === "UserExist") {
-          toast.error("User already exists", { hideProgressBar: true, autoClose: 3000 })
-        } else {
-          console.log(response.data);
-        }
-      } catch (error) {
-        console.log(error);
+      const response = await axios.post(`${localhostURL}/registerPost`, { name, email, phone, password })
+      if (response.data === "UserExist") {
+        toast.error("Email already exist", { hideProgressBar: true, autoClose: 3000 });
+      } else {
+        toast.success("Registration completed", { hideProgressBar: true, autoClose: 2000 });
+        setTimeout(() => {
+          navigate("/login");
+        }, 2000)
       }
     }
   }
