@@ -13,6 +13,10 @@ const adminSlice = createSlice({
     searchUser: (state, action) => {
       const searchName = action.payload.toLowerCase();
       state.usersList = state.orginalData.filter((user) => user.name.toLowerCase().includes(searchName));
+    },
+    logoutAdmin: (state) => {
+      state.orginalData = [];
+      state.usersList = [];
     }
   },
   extraReducers: (builder) => {
@@ -36,6 +40,6 @@ const adminSlice = createSlice({
   }
 });
 
-const { searchUser } = adminSlice.actions;
-export { searchUser }
+const { searchUser, logoutAdmin } = adminSlice.actions;
+export { searchUser, logoutAdmin }
 export default adminSlice.reducer;

@@ -12,7 +12,16 @@
     height: 25px;
     background-color: white;
     border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
+
+.cirle p {
+    font-weight: bold;
+    color: rgb(89, 0, 113);
+}
+
 .nav-list {
     display: flex;
     list-style-type: none;

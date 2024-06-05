@@ -14,19 +14,15 @@ const loginPost = async (req, res) => {
   try {
     const { email, password } = req.body;
     const userData = await User.findOne({ email: email });
-    if (userData != null) {
+    if (userData) {
       const bcryptPassword = await bcrypt.compare(password, userData.password);
-      if (bcryptPassword) {
-        if (userData.isBlocked === true) {
-          res.json("user is blocked");
-        } else {
-          res.json(userData)
-        }
+      if (bcryptPassword == true) {
+        res.json(userData)
       } else {
-        res.send("wrong password")
+        res.send("wrongPassword")
       }
     } else {
-      res.send("user not found");
+      res.send("notFound");
     }
   } catch (error) {
     console.log(error);

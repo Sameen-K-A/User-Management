@@ -1,7 +1,19 @@
 import React from "react";
+import { useSelector, useDispatch } from "react-redux";
+import { logoutUser } from "../../redux/user/userSlice";
+import { useNavigate } from "react-router-dom";
 import "../../assets/style/navbar.css";
 
 const Navbar = () => {
+  const userData = useSelector((state) => state.user.userData);
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+
+  const handleLogout = () => {
+    dispatch(logoutUser());
+    navigate("/");
+  }
+
   return (
     <div className="navbar">
       <ul className="nav-list">
@@ -9,8 +21,12 @@ const Navbar = () => {
         <li>About Us</li>
         <li>Contact</li>
       </ul>
-      <div className="logout-btn">
-        <div className="cirle"></div>
+      <div className="logout-btn" onClick={() => handleLogout()}>
+        <div className="cirle">
+          {userData && (
+            <p>{userData.name[0]}</p>
+          )}
+        </div>
         <span>Logout</span>
       </div>
     </div>

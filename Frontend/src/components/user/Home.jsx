@@ -1,9 +1,11 @@
 import React from "react";
 import Navbar from "../user/Navbar";
 import { Camera } from "../svg/svgIcons";
+import { useSelector } from "react-redux";
 import "../../assets/style/home.css";
 
 const Home = () => {
+  const userData = useSelector((state) => state.user.userData);
   return (
     <>
       <Navbar />
@@ -13,9 +15,13 @@ const Home = () => {
             <div className="circle-btn"><Camera /></div>
           </div>
           <div className="details">
-            <p><span>Name :</span> Sameen K A</p>
-            <p><span>Email :</span> sameensameen60@gmail.com</p>
-            <p><span>phone Number :</span> 9562718577</p>
+            {userData && (
+              <>
+                <p><span>Name : </span>{userData.name}</p>
+                <p><span>Email : </span>{userData.email}</p>
+                <p><span>phone Number : </span>{userData.phone}</p>
+              </>
+            )}
           </div>
         </div>
       </div>
