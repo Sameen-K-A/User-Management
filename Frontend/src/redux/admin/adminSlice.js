@@ -1,5 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { fetchUser, deleteUser } from "./adminThunks";
+import { fetchUser, deleteUser, editName } from "./adminThunks";
 
 const initialState = [];
 
@@ -26,6 +26,12 @@ const adminSlice = createSlice({
         const deletedUserID = action.payload;
         state.usersList = state.usersList.filter((user) => user._id != deletedUserID && user);;
         state.orginalData = state.orginalData.filter((user) => user._id != deletedUserID && user);;
+      })
+      .addCase(editName.fulfilled, (state, action) => {
+        const userID = action.payload.id;
+        const newName = action.payload.name;
+        state.usersList = state.usersList.map((user) => user._id == userID ? { ...user, name: newName } : user);
+        state.orginalData = state.orginalData.map((user) => user._id == userID ? { ...user, name: newName } : user);
       })
   }
 });

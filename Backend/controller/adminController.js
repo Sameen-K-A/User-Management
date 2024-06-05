@@ -21,8 +21,8 @@ const deleteUser = async (req, res) => {
 
 const editUser = async (req, res) => {
   try {
-    const { id, newName } = req.body;
-    const updateUser = await User.updateOne({ _id: id }, { name: newName });
+    const { userID, newName } = req.body;
+    const updateUser = await User.updateOne({ _id: userID }, { name: newName });
     res.json(updateUser);
   } catch (error) {
     console.log(error);

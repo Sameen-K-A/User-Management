@@ -21,3 +21,15 @@ export const deleteUser = createAsyncThunk(
         }
     }
 )
+
+export const editName = createAsyncThunk(
+    "adminSlice/editName",
+    async ({ id, name }) => {
+        const response = await axios.post(`${localhostURL}/admin/editUser`, { userID: id, newName: name });
+        if (response.data.modifiedCount == 1) {
+            return {id, name}
+        } else {
+            throw new Error("User name can't change please try again later");
+        }
+    }
+)
