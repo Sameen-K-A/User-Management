@@ -9,21 +9,11 @@ const fetchuser = async (req, res) => {
   }
 }
 
-const blockUser = async (req, res) => {
+const deleteUser = async (req, res) => {
   try {
     const userID = req.body.userID;
-    const updateUser = await User.updateOne({ _id: userID }, { isBlocked: true });
-    res.send(updateUser);
-  } catch (error) {
-    console.log(error);
-  }
-}
-
-const unblockUser = async (req, res) => {
-  try {
-    const userID = req.body.userID;
-    const updateUser = await User.updateOne({ _id: userID }, { isBlocked: false });
-    res.send(updateUser);
+    const deleteUser = await User.deleteOne({ _id: userID });
+    res.send(deleteUser);
   } catch (error) {
     console.log(error);
   }
@@ -31,8 +21,8 @@ const unblockUser = async (req, res) => {
 
 const editUser = async (req, res) => {
   try {
-    const {id, newName} = req.body;
-    const updateUser = await User.updateOne({ _id: id }, {name : newName});
+    const { id, newName } = req.body;
+    const updateUser = await User.updateOne({ _id: id }, { name: newName });
     res.json(updateUser);
   } catch (error) {
     console.log(error);
@@ -41,7 +31,6 @@ const editUser = async (req, res) => {
 
 module.exports = {
   fetchuser,
-  blockUser,
-  unblockUser,
+  deleteUser,
   editUser
 };

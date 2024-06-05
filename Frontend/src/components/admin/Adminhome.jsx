@@ -4,7 +4,8 @@ import Search from "../admin/Search";
 import { Delete, Editbtn } from "../svg/svgIcons";
 import { ToastContainer, toast } from "react-toastify";
 import { useSelector, useDispatch } from "react-redux";
-import { fetchUser } from "../../redux/admin/adminThunks";
+import { fetchUser, deleteUser } from "../../redux/admin/adminThunks";
+import confirmAlert from "../../assets/sweetAlert/confirmAlert";
 import "../../assets/style/adminhome.css";
 
 const Adminhome = () => {
@@ -14,6 +15,15 @@ const Adminhome = () => {
   useEffect(() => {
     dispatch(fetchUser());
   }, [])
+
+  const handleDeleteUser = (id) => {
+    confirmAlert("Do you want to delete this user permanently?")
+    .then((result) => {
+      if(result.isConfirmed){
+        dispatch(deleteUser(id));
+      }
+    })
+  }
 
   return (
     <>
@@ -43,7 +53,7 @@ const Adminhome = () => {
                     <td>{user.email}</td>
                     <td>{user.phone}</td>
                     <td className="edit" ><Editbtn /></td>
-                    <td className="delete"><Delete /></td>
+                    <td className="delete" onClick={() => handleDeleteUser(user._id)}><Delete /></td>
                   </tr>
                 )
               })}

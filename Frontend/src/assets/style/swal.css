@@ -26,7 +26,8 @@
 }
 
 .swal2-popup.custom-width {
-  width: 330px;
+  width: auto;
+  padding: 0px 20px;
   height: 100px;
   padding: 0%;
 }

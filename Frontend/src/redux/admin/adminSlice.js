@@ -1,5 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { fetchUser } from "./adminThunks";
+import { fetchUser, deleteUser } from "./adminThunks";
 
 const initialState = [];
 
@@ -16,6 +16,11 @@ const adminSlice = createSlice({
       .addCase(fetchUser.fulfilled, (state, action) => {
         const userList = action.payload;
         state.usersList = userList;
+      })
+      .addCase(deleteUser.fulfilled, (state, action) => {
+        const deletedUserID = action.payload;
+        const afterDelete = state.usersList.filter((user) => user._id != deletedUserID && user);
+        state.usersList = afterDelete;
       })
   }
 });
