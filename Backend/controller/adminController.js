@@ -1,6 +1,6 @@
 const User = require("../model/UserModel");
 
-const userlist = async (req, res) => {
+const fetchuser = async (req, res) => {
   try {
     const usersList = await User.find({});
     res.json(usersList);
@@ -40,7 +40,7 @@ const editUser = async (req, res) => {
 }
 
 module.exports = {
-  userlist,
+  fetchuser,
   blockUser,
   unblockUser,
   editUser

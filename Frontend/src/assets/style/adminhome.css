@@ -6,6 +6,10 @@
     padding: 50px 200px;
 }
 
+.main h3 {
+    text-align: center;
+}
+
 .styled-table {
     width: 100%;
     table-layout: fixed;
