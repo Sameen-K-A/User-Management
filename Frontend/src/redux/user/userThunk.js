@@ -59,3 +59,38 @@ export const registerUser = async ({ name, email, phone, password, confirmPasswo
     }
   }
 }
+
+export const editProfile = createAsyncThunk(
+  "userSlice/editProfile",
+  async ({ formData, name, phone, image, toast }, { rejectWithValue }) => {
+    try {
+      name = name.trim();
+      phone = phone.toString().trim();
+      const nameRegex = /^[a-zA-Z\s]{3,20}$/;
+      const phoneRegex = /^[6-9]\d{9}$/;
+      if (name === "" || phone === "") {
+        toast.warning("All the fields are required!", { hideProgressBar: true, autoClose: 3000 });
+        return rejectWithValue("All the fields are required!");
+      } else if (!nameRegex.test(name)) {
+        toast.warning("Name must be between 3 to 20 characters and contain only letters!", { hideProgressBar: true, autoClose: 3000 });
+        return rejectWithValue("Invalid name format!");
+      } else if (!phoneRegex.test(phone)) {
+        toast.warning("Invalid phone number!", { hideProgressBar: true, autoClose: 3000 });
+        return rejectWithValue("Invalid phone number format!");
+      } else {
+        const response = await axios.post(`${localhostURL}/editProfile`, formData, { headers: { "Content-Type": "multipart/form-data" } });
+        if (response.data.acknowledged === true && response.data.modifiedCount == 1) {
+          toast.success("Update changes successfully", { hideProgressBar: true, autoClose: 3000 });
+          return { name, phone, ...(image && { profileURL: image.name }) };
+        } else {
+          toast.warning("No changes detected", { hideProgressBar: true, autoClose: 3000 });
+          return rejectWithValue("No changes found");
+        }
+      }
+    } catch (error) {
+      console.error("Error: ", error);
+      toast.error("Something went wrong, please try again later", { hideProgressBar: true, autoClose: 3000 });
+      return rejectWithValue(error.message);
+    }
+  }
+)

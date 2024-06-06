@@ -47,15 +47,20 @@ const registerPost = async (req, res) => {
   }
 }
 
-const profileImgEdit = async (req, res) => {
-  const { imgURL, id } = req.body;
-  console.log(imgURL);
-  const updateUser = await User.updateOne({ _id: id }, { profileURL: imgURL });
-  res.json(updateUser);
+const editProfile = async (req, res) => {
+  const { userID, name, phone } = req.body;
+  const file = req.file;
+  const updatedData = {
+    name: name,
+    phone: phone,
+    ...(file && { profileURL: file.originalname })
+  }
+  const updateUser = await User.updateOne({ _id: userID }, updatedData);
+  res.send(updateUser);
 }
 
 module.exports = {
   loginPost,
   registerPost,
-  profileImgEdit
+  editProfile
 }

@@ -17,10 +17,6 @@ const userSchema = new mongoose.Schema(
       type: String,
       require: true,
     },
-    isBlocked: {
-      type: Boolean,
-      default: false
-    },
     profileURL: {
       type: String,
       default: undefined

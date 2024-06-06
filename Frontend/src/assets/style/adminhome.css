@@ -77,6 +77,13 @@
     text-align: center;
 }
 
+.searchandsort {
+    display: flex;
+    justify-content: space-between;
+    margin: 0%;
+    padding: 0%;
+}
+
 
 @media (max-width: 376px) {
     .main {

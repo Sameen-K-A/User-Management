@@ -22,11 +22,13 @@ const Navbar = () => {
         <li>Contact</li>
       </ul>
       <div className="logout-btn" onClick={() => handleLogout()}>
-        <div className="cirle">
-          {userData && (
+        {userData.profileURL ? (
+          <div className="cirle" style={{ backgroundImage: `url(/src/public/${userData.profileURL})` }}></div>
+        ) : (
+          <div className="cirle">
             <p>{userData.name[0]}</p>
-          )}
-        </div>
+          </div>
+        )}
         <span>Logout</span>
       </div>
     </div>
