@@ -15,9 +15,10 @@ const Navbar = () => {
   return (
     <div className="navbar">
       <ul className="nav-list">
-        <li><u>Home</u></li>
-        <li>About Us</li>
-        <li>Contact</li>
+        <li><u>Users</u></li>
+        <li>Orders</li>
+        <li>Products</li>
+        <li>Sales report</li>
       </ul>
       <div className="logout-btn" onClick={() => handleLogout()}>
         <Logout />

@@ -1,5 +1,6 @@
 const User = require("../model/UserModel");
 const bcrypt = require("bcrypt");
+const { createToken, verifyToken } = require("../config/jwt");
 
 const hashFunction = async (password) => {
   try {
@@ -17,7 +18,8 @@ const loginPost = async (req, res) => {
     if (userData) {
       const bcryptPassword = await bcrypt.compare(password, userData.password);
       if (bcryptPassword == true) {
-        res.json(userData)
+        const token = createToken(userData._id);
+        res.json({userData, token})
       } else {
         res.send("wrongPassword")
       }

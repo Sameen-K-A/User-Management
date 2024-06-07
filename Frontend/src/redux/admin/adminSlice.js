@@ -1,13 +1,15 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { fetchUser, deleteUser, editName } from "./adminThunks";
+import { login, fetchUser, deleteUser, editName } from "./adminThunks";
 
 const initialState = [];
+const token = localStorage.getItem("admin-token") ? JSON.parse(localStorage.getItem("admin-token")) : false;
 
 const adminSlice = createSlice({
   name: "adminSlice",
   initialState: {
     orginalData: initialState,
     usersList: initialState,
+    jwtToken: token
   },
   reducers: {
     searchUser: (state, action) => {
@@ -17,10 +19,17 @@ const adminSlice = createSlice({
     logoutAdmin: (state) => {
       state.orginalData = [];
       state.usersList = [];
+      state.jwtToken = false;
+      localStorage.removeItem('admin-token');
     }
   },
   extraReducers: (builder) => {
     builder
+      .addCase(login.fulfilled, (state, action) => {
+        const newToken = action.payload;
+        state.jwtToken = newToken;
+        localStorage.setItem("admin-token", JSON.stringify(newToken));
+      })
       .addCase(fetchUser.fulfilled, (state, action) => {
         const userList = action.payload;
         state.usersList = userList;

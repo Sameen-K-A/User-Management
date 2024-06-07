@@ -1,4 +1,27 @@
 const User = require("../model/UserModel");
+const { createToken } = require("../config/jwt")
+const dotenv = require("dotenv");
+dotenv.config
+
+const login = (req, res) => {
+  try {
+    const { email, password } = req.body;
+    const orginalEmail = process.env.adminEmail;
+    const orginalPassword = process.env.adminPassword;
+    if (email == orginalEmail) {
+      if (orginalPassword == password) {
+        const token = createToken(email);
+        res.send(token);
+      } else {
+        res.send("passwordwrong")
+      }
+    } else {
+      res.send("EmailNotFound")
+    }
+  } catch (error) {
+    console.log(error);
+  }
+}
 
 const fetchuser = async (req, res) => {
   try {
@@ -30,6 +53,7 @@ const editUser = async (req, res) => {
 }
 
 module.exports = {
+  login,
   fetchuser,
   deleteUser,
   editUser

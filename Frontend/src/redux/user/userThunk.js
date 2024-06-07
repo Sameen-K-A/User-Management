@@ -78,10 +78,22 @@ export const editProfile = createAsyncThunk(
         toast.warning("Invalid phone number!", { hideProgressBar: true, autoClose: 3000 });
         return rejectWithValue("Invalid phone number format!");
       } else {
-        const response = await axios.post(`${localhostURL}/editProfile`, formData, { headers: { "Content-Type": "multipart/form-data" } });
+        const token = JSON.parse(localStorage.getItem("token"));
+        const response = await axios.post(`${localhostURL}/editProfile`, formData, {
+          headers: {
+            "Content-Type": "multipart/form-data",
+            "Authorization": `Bearer ${token}`
+          }
+        });
         if (response.data.acknowledged === true && response.data.modifiedCount == 1) {
           toast.success("Update changes successfully", { hideProgressBar: true, autoClose: 3000 });
           return { name, phone, ...(image && { profileURL: image.name }) };
+        } else if (response.data === "Access_denied") {
+          toast.warning("Access_denied", { hideProgressBar: true, autoClose: 3000 });
+          return rejectWithValue("Access_denied");
+        } else if (response.data === "authentication_failed") {
+          toast.warning("Authentication failed please login again", { hideProgressBar: true, autoClose: 3000 });
+          return rejectWithValue("Access_denied");
         } else {
           toast.warning("No changes detected", { hideProgressBar: true, autoClose: 3000 });
           return rejectWithValue("No changes found");
