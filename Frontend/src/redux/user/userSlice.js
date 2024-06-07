@@ -2,20 +2,32 @@ import { createSlice } from "@reduxjs/toolkit";
 import { loginVerification, editProfile } from "../user/userThunk";
 
 const userData = localStorage.getItem("userData") ? JSON.parse(localStorage.getItem("userData")) : null;
+const darkMode = localStorage.getItem("darkMode") ? true : false;
 
 const userSlice = createSlice({
   name: "userSlice",
   initialState: {
     userData: userData,
-    editConfirm: false
+    editConfirm: false,
+    darkMode: darkMode
   },
   reducers: {
     logoutUser: (state) => {
       state.userData = null;
+      state.darkMode = false;
+      localStorage.removeItem("darkMode");
       localStorage.removeItem('userData');
     },
     resetEdit: (state) => {
       state.editConfirm = false;
+    },
+    changetoLightMode: (state) => {
+      state.darkMode = false;
+      localStorage.removeItem("darkMode")
+    },
+    changetoDarkMode: (state) => {
+      state.darkMode = true;
+      localStorage.setItem("darkMode", true)
     }
   },
   extraReducers: (builder) => {
@@ -39,4 +51,4 @@ const userSlice = createSlice({
 })
 
 export default userSlice.reducer;
-export const { logoutUser, resetEdit } = userSlice.actions;
+export const { logoutUser, resetEdit, changetoDarkMode, changetoLightMode } = userSlice.actions;

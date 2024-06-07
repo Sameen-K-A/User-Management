@@ -12,6 +12,11 @@
     transition: transform 0.2s ease-in-out;
 }
 
+.dark {
+    background: linear-gradient(0deg, rgb(182, 79, 200) 10%, rgb(234, 128, 252) 100%) !important;
+    color: rgb(42, 42, 42);
+}
+
 .card-container:hover {
     box-shadow: 0 4px 8px rgba(176, 0, 225, 0.279);
     transform: scale(1.01);
@@ -34,6 +39,7 @@
     transform: translateX(-50%);
     background-position: center;
     background-size: cover;
+    background-repeat: no-repeat;
 }
 
 .circle-btn {
@@ -45,6 +51,19 @@
     bottom: -0px;
     padding: 10px;
     background-color: rgb(176, 0, 225);
+    border-radius: 50%;
+    cursor: pointer;
+}
+
+.circle-btn-dark {
+    position: absolute;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    right: -0px;
+    bottom: -0px;
+    padding: 10px;
+    background-color: rgb(29, 29, 29);
     border-radius: 50%;
     cursor: pointer;
 }
@@ -62,6 +81,13 @@
     background-color: transparent;
     border: none;
     border-bottom: 1px solid rgb(176, 0, 225);
+    outline: none;
+}
+
+.editInput-dark {
+    background-color: transparent;
+    border: none;
+    border-bottom: 1px solid rgb(23, 23, 23);
     outline: none;
 }
 
@@ -85,4 +111,8 @@
     padding: 5px 10px;
     width: 80px;
     cursor: pointer;
+}
+
+.dark-btn button {
+    background: linear-gradient(70deg, rgb(29, 29, 29) 0%, rgb(0, 0, 0) 53%, rgb(22, 22, 22) 100%) !important;
 }

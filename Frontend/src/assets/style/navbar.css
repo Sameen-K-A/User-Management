@@ -1,4 +1,4 @@
-.navbar {
+.navbar-light {
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -7,10 +7,19 @@
     padding: 0.3rem;
 }
 
+.navbar-dark {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    background: linear-gradient(70deg, rgb(182, 79, 200) 0%, #ea80fc 53%, rgb(182, 79, 200) 100%);
+    padding: 0.3rem;
+}
+
 .cirle {
     width: 25px;
     height: 25px;
-    background-color: white;
+    background-color: #190932;
     border-radius: 50%;
     display: flex;
     justify-content: center;
@@ -24,23 +33,38 @@
     color: rgb(89, 0, 113);
 }
 
-.nav-list {
+.nav-list,
+.nav-list-dark {
     display: flex;
     list-style-type: none;
 }
 
-.nav-list li {
+.nav-list li,
+.nav-list-dark li {
     font-size: 13px;
     margin-right: 2rem;
-    color: white;
     cursor: pointer;
 }
 
-.nav-list li u {
+.nav-list-dark{
+    color: rgb(0, 0, 0);
+}
+
+.nav-list{
+    color: rgb(255, 255, 255);
+}
+
+.nav-list li u,
+.nav-list-dark li u {
     font-weight: bold;
 }
 
-.logout-btn {
+.logout-dark {
+    color: black;
+}
+
+.logout-btn,
+.logout-btn-dark {
     background-color: transparent;
     border: none;
     padding: 0.5rem 1rem;
@@ -55,4 +79,52 @@
     margin-top: 0.01rem;
     color: white;
     font-size: 10px;
+}
+
+.logout-btn-dark span {
+    margin-top: 0.01rem;
+    color: rgb(0, 0, 0);
+    font-size: 10px;
+}
+
+.right-container {
+    display: flex;
+    align-items: center;
+}
+
+.sun svg {
+    animation: rotate 15s linear infinite;
+}
+
+@keyframes rotate {
+    0% {
+        transform: rotate(0);
+    }
+
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+.moon svg {
+    animation: tilt 5s linear infinite;
+}
+
+@keyframes tilt {
+
+    0% {
+        transform: rotate(0deg);
+    }
+
+    25% {
+        transform: rotate(-10deg);
+    }
+
+    75% {
+        transform: rotate(10deg);
+    }
+
+    100% {
+        transform: rotate(0deg);
+    }
 }

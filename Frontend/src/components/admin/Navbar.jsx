@@ -3,7 +3,7 @@ import { Logout } from "../svg/svgIcons";
 import { logoutAdmin } from "../../redux/admin/adminSlice";
 import { useNavigate } from "react-router-dom"
 import { useDispatch } from "react-redux";
-import "../../assets/style/navbar.css";
+import "../../assets/style/adminNavbar.css";
 
 const Navbar = () => {
   const dispatch = useDispatch();

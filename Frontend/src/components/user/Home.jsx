@@ -12,6 +12,7 @@ import "../../assets/style/home.css";
 const Home = () => {
   const userData = useSelector((state) => state.user.userData);
   const editConfirm = useSelector((state) => state.user.editConfirm);
+  const darkMode = useSelector((state) => state.user.darkMode);
   const [name, setName] = useState("");
   const [phone, setPhone] = useState("");
   const [image, setImage] = useState(null);
@@ -48,7 +49,7 @@ const Home = () => {
       <Navbar />
       <ToastContainer />
       <div className="container">
-        <div className="card-container">
+        <div className={darkMode ? "card-container dark" : "card-container"}>
           {!edit ? (
             <>
               <div className="edit-btn-wrapper" onClick={() => handleEditOpen(userData.name, userData.phone)}>
@@ -67,20 +68,20 @@ const Home = () => {
             </>
           ) : (
             <form onSubmit={(e) => handleSumbit(e, userData._id)}>
-              <div className="circle">
-                <input type="file" hidden ref={imageIconReference} onChange={(e) => setImage(e.target.files[0])} accept=".png, .jpeg. jpg" />
-                <div className="circle-btn" onClick={() => imageIconReference.current.click()}><Camera /></div>
+              <div className="circle" style={image ? { backgroundImage: `url(${URL.createObjectURL(image)})` } : { backgroundImage: `url(/src/public/${userData.profileURL})` }} >
+                <input type="file" hidden ref={imageIconReference} onChange={(e) => setImage(e.target.files[0])} accept=".png, .jpeg, .jpg" />
+                <div className={darkMode ? "circle-btn-dark" : "circle-btn"} onClick={() => imageIconReference.current.click()}><Camera /></div>
               </div>
               <div className="details">
                 {userData && (
                   <>
-                    <p><span>Name : </span><input className="editInput" defaultValue={userData.name} type="text" onChange={(e) => setName(e.target.value)} /></p>
-                    <p><span>Phone Number : </span><input className="editInput" defaultValue={userData.phone} type="text" onChange={(e) => setPhone(e.target.value)} /></p>
+                    <p><span>Name : </span><input className={darkMode ? "editInput-dark" : "editInput"} defaultValue={userData.name} type="text" onChange={(e) => setName(e.target.value)} /></p>
+                    <p><span>Phone Number : </span><input className={darkMode ? "editInput-dark" : "editInput"} defaultValue={userData.phone} type="text" onChange={(e) => setPhone(e.target.value)} /></p>
                   </>
                 )}
               </div>
-              <div className="saveandcancel">
-                <button onClick={() => setEdit(false)}>Cancel</button>
+              <div className={darkMode ? "saveandcancel dark-btn" : "saveandcancel"}>
+                <button onClick={() => { setEdit(false); setImage(null) }}>Cancel</button>
                 <button type="submit">Save</button>
               </div>
             </form>

@@ -1,0 +1,58 @@
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    background: linear-gradient(70deg, rgba(89, 0, 113, 1) 0%, rgb(176, 0, 225) 53%, rgb(89, 0, 113) 100%);
+    padding: 0.3rem;
+}
+
+.cirle {
+    width: 25px;
+    height: 25px;
+    background-color: white;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-position: center;
+    background-size: cover;
+}
+
+.cirle p {
+    font-weight: bold;
+    color: rgb(89, 0, 113);
+}
+
+.nav-list {
+    display: flex;
+    list-style-type: none;
+}
+
+.nav-list li {
+    font-size: 13px;
+    margin-right: 2rem;
+    color: white;
+    cursor: pointer;
+}
+
+.nav-list li u {
+    font-weight: bold;
+}
+
+.logout-btn {
+    background-color: transparent;
+    border: none;
+    padding: 0.5rem 1rem;
+    margin-right: 2rem;
+    cursor: pointer;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.logout-btn span {
+    margin-top: 0.01rem;
+    color: white;
+    font-size: 10px;
+}
