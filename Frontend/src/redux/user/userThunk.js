@@ -4,28 +4,40 @@ import { createAsyncThunk } from "@reduxjs/toolkit";
 
 export const loginVerification = createAsyncThunk(
   "userSlice/loginVerification",
-  async ({ email, password, toast }) => {
-    password = password.trim();
-    email = email.trim();
-    const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    if (email === "" || password === "") {
-      toast.error("All fields are required", { hideProgressBar: true, autoClose: 3000 });
-    } else if (!emailPattern.test(email)) {
-      toast.error("Please enter a valid email address", { hideProgressBar: true, autoClose: 3000 });
-    } else if (password.length < 8) {
-      toast.error("Password must be at least 8 characters", { hideProgressBar: true, autoClose: 3000 });
-    } else {
-      const response = await axios.post(`${localhostURL}/loginPost`, { email, password });
-      if (response.data === "notFound") {
-        toast.error("User not found", { hideProgressBar: true, autoClose: 3000 });
-      } else if (response.data === "wrongPassword") {
-        toast.error("Password is wrong", { hideProgressBar: true, autoClose: 3000 });
+  async ({ email, password, toast }, { rejectWithValue }) => {
+    try {
+      password = password.trim();
+      email = email.trim();
+      const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+      if (email === "" || password === "") {
+        toast.error("All fields are required", { hideProgressBar: true, autoClose: 3000 });
+        return rejectWithValue("All fields are required");
+      } else if (!emailPattern.test(email)) {
+        toast.error("Please enter a valid email address", { hideProgressBar: true, autoClose: 3000 });
+        return rejectWithValue("Invalid email address");
+      } else if (password.length < 8) {
+        toast.error("Password must be at least 8 characters", { hideProgressBar: true, autoClose: 3000 });
+        return rejectWithValue("Password too short");
       } else {
-        return response.data;
+        const response = await axios.post(`${localhostURL}/loginPost`, { email, password });
+        if (response.data === "notFound") {
+          toast.error("User not found", { hideProgressBar: true, autoClose: 3000 });
+          return rejectWithValue("User not found");
+        } else if (response.data === "wrongPassword") {
+          toast.error("Password is wrong", { hideProgressBar: true, autoClose: 3000 });
+          return rejectWithValue("Incorrect password");
+        } else {
+          return response.data;
+        }
       }
+
+    } catch (error) {
+      toast.error("Something went wrong, please try again later", { hideProgressBar: true, autoClose: 3000 });
+      return rejectWithValue(error.message);
     }
   }
-)
+);
 
 export const registerUser = async ({ name, email, phone, password, confirmPassword, toast }) => {
   name = name.trim();

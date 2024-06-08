@@ -38,7 +38,7 @@ const userSlice = createSlice({
       .addCase(loginVerification.fulfilled, (state, action) => {
         const { userData, token } = action.payload;
         state.userData = userData;
-        state.jwtToken = token
+        state.jwtToken = token;
         localStorage.setItem("userData", JSON.stringify(userData));
         localStorage.setItem("token", JSON.stringify(token));
       })

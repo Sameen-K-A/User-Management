@@ -13,7 +13,7 @@ const Adminhome = () => {
 
   const [editUserID, setEditUserID] = useState(null);
   const [editedUserNewName, setEditedUserNewName] = useState("");
-  const usersData = useSelector((state) => state.admin.usersList);
+  let usersData = useSelector((state) => state.admin.usersList);
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -24,7 +24,7 @@ const Adminhome = () => {
     confirmAlert("Do you want to delete this user permanently?")
       .then((result) => {
         if (result.isConfirmed) {
-          dispatch(deleteUser(id));
+          dispatch(deleteUser({id, toast}));
         }
       })
   }
@@ -44,7 +44,7 @@ const Adminhome = () => {
             toast.error("No changes found", { autoClose: 2500, hideProgressBar: true });
             setEditUserID(null)
           } else {
-            dispatch(editName({ id, name: editedUserNewName }));
+            dispatch(editName({ id, name: editedUserNewName, toast }));
             setEditUserID(null)
           }
         }
