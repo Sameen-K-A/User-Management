@@ -5,7 +5,7 @@ import { useNavigate } from "react-router-dom"
 import { useDispatch } from "react-redux";
 import "../../assets/style/adminNavbar.css";
 
-const Navbar = () => {
+const Navbar = React.memo(() => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const handleLogout = () => {
@@ -26,6 +26,6 @@ const Navbar = () => {
       </div>
     </div>
   );
-};
+});
 
 export default Navbar;

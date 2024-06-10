@@ -35,6 +35,8 @@ const Login = () => {
             <input type="text" placeholder="Email" className="input" onChange={(e) => setEmail(e.target.value)} autoComplete="email" />
             <input type="password" placeholder="Password" className="input" onChange={(e) => setPassword(e.target.value)} autoComplete="current-password" />
             <button type="submit" className="button">Login</button>
+            {/* <p className="ormsg">or</p>
+            <button type="button" className="login-with-google-btn" > Sign in with Google</button> */}
             <p className="link">Dont't have an account <Link to={"/register"}>Register</Link></p>
           </form>
         </div>

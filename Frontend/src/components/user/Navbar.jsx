@@ -5,7 +5,8 @@ import { useNavigate } from "react-router-dom";
 import { Sun, Moon } from "../svg/svgIcons";
 import "../../assets/style/navbar.css";
 
-const Navbar = () => {
+const Navbar = React.memo(() => {
+  console.log("navbar wrks");
   const userData = useSelector((state) => state.user.userData);
   const darkMode = useSelector((state) => state.user.darkMode);
   const dispatch = useDispatch();
@@ -47,6 +48,6 @@ const Navbar = () => {
       </div>
     </div>
   );
-};
+});
 
 export default Navbar;

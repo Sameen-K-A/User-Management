@@ -17,7 +17,7 @@ const Register = () => {
   const handleRegistration = async (event) => {
     event.preventDefault();
     const response = await registerUser({ name, email, phone, password, confirmPassword, toast });
-    if(response === "success"){
+    if (response === "success") {
       setTimeout(() => {
         navigate('/');
       }, 2500);
@@ -37,6 +37,8 @@ const Register = () => {
             <input type="password" placeholder="Password" className="input" autoComplete="new-password" onChange={(e) => setPassword(e.target.value)} />
             <input type="password" placeholder="Confirm Password" className="input" autoComplete="new-password" onChange={(e) => setConfirmPassword(e.target.value)} />
             <button type="submit" className="button">Register</button>
+            {/* <p className="ormsg">or</p>
+            <button type="button" className="login-with-google-btn" > Sign in with Google</button> */}
             <p className="link">Already have an account <Link to={"/login"}>Login</Link></p>
           </form>
         </div>

@@ -1,6 +1,6 @@
 const User = require("../model/UserModel");
 const bcrypt = require("bcrypt");
-const { createToken, verifyToken } = require("../config/jwt");
+const { createToken } = require("../config/jwt");
 
 const hashFunction = async (password) => {
   try {
