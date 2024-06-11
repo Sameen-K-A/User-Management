@@ -10,7 +10,6 @@ const userSlice = createSlice({
   initialState: {
     userData: userData,
     jwtToken: token,
-    editConfirm: false,
     darkMode: darkMode,
   },
   reducers: {
@@ -20,9 +19,6 @@ const userSlice = createSlice({
       localStorage.removeItem('token');
       localStorage.removeItem('userData');
       localStorage.removeItem("darkMode");
-    },
-    resetEdit: (state) => {
-      state.editConfirm = false;
     },
     changetoLightMode: (state) => {
       state.darkMode = false;

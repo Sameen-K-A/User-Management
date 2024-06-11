@@ -4,14 +4,12 @@ import { Camera, Editbtn } from "../svg/svgIcons";
 import { useSelector } from "react-redux";
 import { editProfile } from "../../redux/user/userThunk";
 import { useDispatch } from "react-redux";
-import { resetEdit } from "../../redux/user/userSlice";
 import { ToastContainer, toast } from "react-toastify";
 import 'react-toastify/dist/ReactToastify.css';
 import "../../assets/style/home.css";
 
 const Home = () => {
   const userData = useSelector((state) => state.user.userData);
-  const editConfirm = useSelector((state) => state.user.editConfirm);
   const darkMode = useSelector((state) => state.user.darkMode);
   const [name, setName] = useState("");
   const [phone, setPhone] = useState("");
@@ -21,11 +19,8 @@ const Home = () => {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    if (editConfirm) {
-      setEdit(false);
-      dispatch(resetEdit())
-    }
-  }, [editConfirm]);
+    setEdit(false);
+  }, [userData]);
 
 
   const handleEditOpen = (username, userphone) => {
