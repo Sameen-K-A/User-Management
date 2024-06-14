@@ -42,6 +42,21 @@
     background-repeat: no-repeat;
 }
 
+.dark-circle {
+    width: 120px;
+    height: 120px;
+    background-color: rgb(42, 42, 42);
+    border-radius: 50%;
+    position: absolute;
+    border: 2px solid rgb(234, 128, 252);
+    top: -40px;
+    left: 50%;
+    transform: translateX(-50%);
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+
 .circle-btn {
     position: absolute;
     display: flex;

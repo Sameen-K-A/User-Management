@@ -50,7 +50,7 @@ const Home = () => {
               <div className="edit-btn-wrapper" onClick={() => handleEditOpen(userData.name, userData.phone)}>
                 <Editbtn />
               </div>
-              <div className="circle" style={{ backgroundImage: `url(/src/public/${userData.profileURL})` }} />
+              <div className={darkMode ? "dark-circle" : "circle"} style={{ backgroundImage: `url(/src/public/${userData.profileURL})` }} />
               <div className="details">
                 {userData && (
                   <>
@@ -63,7 +63,7 @@ const Home = () => {
             </>
           ) : (
             <form onSubmit={(e) => handleSumbit(e, userData._id)}>
-              <div className="circle" style={image ? { backgroundImage: `url(${URL.createObjectURL(image)})` } : { backgroundImage: `url(/src/public/${userData.profileURL})` }} >
+              <div className={darkMode ? "dark-circle" : "circle"} style={image ? { backgroundImage: `url(${URL.createObjectURL(image)})` } : { backgroundImage: `url(/src/public/${userData.profileURL})` }} >
                 <input type="file" hidden ref={imageIconReference} onChange={(e) => setImage(e.target.files[0])} accept=".png, .jpeg, .jpg" />
                 <div className={darkMode ? "circle-btn-dark" : "circle-btn"} onClick={() => imageIconReference.current.click()}><Camera /></div>
               </div>

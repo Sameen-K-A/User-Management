@@ -10,9 +10,9 @@
 }
 
 .swal2-cancel.cancel-btn {
-  background-color: #ffffff;
+  background: white;
   color: rgb(0, 0, 0);
-  border: 1px solid black;
+  border: 1px solid black;  
   padding: 10px 15px;
   border-radius: 50px;
   cursor: pointer;

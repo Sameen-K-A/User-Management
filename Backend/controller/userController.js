@@ -14,12 +14,19 @@ const hashFunction = async (password) => {
 const loginPost = async (req, res) => {
   try {
     const { email, password } = req.body;
-    const userData = await User.findOne({ email: email });
-    if (userData) {
-      const bcryptPassword = await bcrypt.compare(password, userData.password);
+    const data = await User.findOne({ email: email });
+    if (data) {
+      const bcryptPassword = await bcrypt.compare(password, data.password);
       if (bcryptPassword == true) {
+        const userData = {
+          "_id": data._id,
+          "name": data.name,
+          "email": data.email,
+          "phone": data.phone,
+          "profileURL": data.profileURL
+        };
         const token = createToken(userData._id);
-        res.json({userData, token})
+        res.json({ userData, token })
       } else {
         res.send("wrongPassword")
       }

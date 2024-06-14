@@ -17,6 +17,7 @@ function App() {
       <ErrorBoundary fallback={<Error404 />}>
         <Router>
           <Routes>
+            <Route path="*" element={<Error404 />} />
             <Route path="/" element={<Login />} />
             <Route path="/login" element={<Login />} />
             <Route path="/Home" element={<IsUser><Home /></IsUser>} />
